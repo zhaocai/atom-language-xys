@@ -1,0 +1,15 @@
+{
+  "name": "language-xys",
+  "version": "0.2.0",
+  "description": "XYplorer script syntax highlighting for Atom",
+  "keywords": [
+    "language",
+    "grammar",
+    "XYplorer"
+  ],
+  "repository": "https://github.com/zhaocai/atom-language-xys",
+  "license": "MIT",
+  "engines": {
+    "atom": ">=1.0.0 <2.0.0"
+  }
+}
