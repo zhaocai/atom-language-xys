@@ -18,7 +18,7 @@
 			$2
 		"""
 
-	"ifelse":
+	"ife":
 		prefix: "ifelse"
 		body: """
 			if (${1:condition}) {
@@ -29,17 +29,15 @@
 			$4
 		"""
 
-	"ifelseif":
-		prefix: "ifelseif"
+	"elseif":
+		prefix: "elseif"
 		body: """
-			if (${1:condition}) {
+			elseif (${1:condition}) {
 				${2://statement(s)}
-			} elseif (${3:condition}) {
-				${4://statement(s)}
 			} else {
-				${5://statement(s)}
+				${4://statement(s)}
 			}
-			$6
+			$0
 		"""
 
 	"foreach":
@@ -60,6 +58,30 @@
 			$3
 		"""
 
+	'Function':
+		prefix: 'function'
+		body: """
+		function ${1: func} (${2: \$a} ) {
+			${3: // statement;}
+		}
+		$0
+		"""
+
+	"include":
+		prefix: "include"
+		body: "include ${1:\"file\"};"
+
+	"include_once":
+		prefix: "include_once"
+		body: "include_once ${1:\"file\"};"
+
+	'Label':
+		prefix: 'label'
+		body: """
+		"${1:Caption}|${2:Icon} : ${3:Label}"
+			$0
+		"""
+		description: '"Caption|Icon|State[2->Checked|4->Disabled] : Label" Script'
 
 	"abs":
 		prefix: "abs"
