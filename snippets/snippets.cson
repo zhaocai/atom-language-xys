@@ -61,7 +61,7 @@
 	'Function':
 		prefix: 'function'
 		body: """
-		function ${1: func} (${2: \$a} ) {
+		function ${1:func}(${2:\$a}) {
 			${3: // statement;}
 		}
 		$0
@@ -740,9 +740,13 @@
 		prefix: "status"
 		body: "status ${1:\"text\"}, ${2:\"[color rrggbb]\"}, ${3:\"[icon=ready|progress|alert|stop]\"}"
 
-	"step":
-		prefix: "step"
-		body: "step"
+	'step':
+		prefix: 'step'
+		body: """
+		step;$0
+		"""
+		description: "Enables 'Step Mode' for the current execution of scripts."
+
 
 	"strlen":
 		prefix: "strlen"
