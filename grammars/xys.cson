@@ -1,22 +1,12 @@
+##
+# coffeelint: disable=max_line_length
 'fileTypes': [
   'xys',
   'xyi'
 ]
 'name': 'XYplorer'
 'patterns': [
-  {
-    'begin': '/\\*'
-    'captures':
-      '0':
-        'name': 'punctuation.definition.comment.xys'
-    'comment': 'multiline comment'
-    'end': '\\*/'
-    'name': 'comment.block.xys'
-  }
-  {
-    'match': '//.*$'
-    'name': 'comment.line.xys'
-  }
+  { 'include': '#code' }
   {
     'match': '(?i:\\s*((\\${1})\\w*))(\\.\\w+)?'
     'name': 'variable.other.xys'
@@ -60,7 +50,7 @@
     'name': 'support.type.xys'
   }
   {
-    'match': '(?i:\\s*(local|global))'
+    'match': '(?i:\\s*(local|global|perm))'
     'name': 'entity.name.declaration.xys'
   }
   {
@@ -68,8 +58,27 @@
     'name': 'keyword.control.xys'
   }
   {
-    'match': '(?i:(\\b(abs|asc|assert|attrstamp|backupto|base64decode|base64encode|beep|box|br|break|button|caller|catalogload|catalogreport|ceil|cell|charview|chr|colorfilter|columnlayout|comment|compare|comparehash|confirm|continue|copier|copy|copyas|copydata|copyitem|copytext|copyto|ctbicon|ctbname|ctbstate|datediff|delete|deletefile|download|echo|edittags|end|enumshellfolderitems|error|escapeunicode|eval|exist|exists|exit|extracttext|extratag|filesequal|filesize|filetype|filter|floor|focus|folderreport|foldersize|format|formatbytes|formatdate|formatlist|fresh|freshhere|get|getinfo|getkey|getpathcomponent|getsectionlist|gettoken|gettokenindex|global|goto|hash|hashlist|help|hexdump|hextodec|highlight|html|include|include_once|incr|info|input|inputfile|inputfolder|inputselect|internetflags|isset|isunicode|listfolder|listpane|load|loadlayout|loadsearch|loadtree|logchange|logon|logtofile|makecoffee|md5|moveas|moveto|msecs|msg|new|now|open|openwith|paperfolder|pasteto|perm|popupmainmenu|popupmenu|property|quote|rand|readfile|readpv|readurl|recase|regexmatches|regexreplace|releaseglobals|rename|renameitem|replace|replacelist|report|resolvepath|return|rotate|round|row|rtfm|run|runret|savesettings|savethumb|screen|sel|selectitems|self|selfilter|seltab|sendkeys|set|setcolumns|seticons|setkey|setlayout|setting|settingp|showhash|showshellprops|sortby|sound|status|step|strlen|strpos|strrepeat|sub|substr|swapnames|sync|sysicons|tab|tabset|tag|tagitems|taglist|text|timestamp|toolbar|trim|tweak|unset|unstep|unthumb|urldecode|urlencode|userbutton|utf8decode|utf8encode|wait|winpos|winsize|wipe|wmcopydata|writefile|writepv|zip_add|zip_extract|zip_list)))\\b'
+    'match': '(?i:(\\b(abs|asc|assert|attrstamp|backupto|base64decode|base64encode|beep|box|br|break|button|caller|catalogload|catalogreport|ceil|cell|charview|chr|colorfilter|columnlayout|comment|compare|comparehash|confirm|continue|copier|copy|copyas|copydata|copyitem|copytext|copyto|ctbicon|ctbname|ctbstate|datediff|delete|deletefile|download|echo|edittags|end|enumshellfolderitems|error|escapeunicode|eval|exist|exists|exit|extracttext|extratag|filesequal|filesize|filetype|filter|floor|focus|folderreport|foldersize|format|formatbytes|formatdate|formatlist|fresh|freshhere|get|getinfo|getkey|getpathcomponent|getsectionlist|gettoken|gettokenindex|global|goto|hash|hashlist|help|hexdump|hextodec|highlight|html|include|include_once|incr|info|input|inputfile|inputfolder|inputselect|internetflags|isset|isunicode|listfolder|listpane|load|loadlayout|loadsearch|loadtree|logchange|logon|logtofile|makecoffee|md5|moveas|moveto|msecs|msg|new|now|open|openwith|paperfolder|pasteto|popupmainmenu|popupmenu|property|quicksearch|quote|rand|readfile|readpv|readurl|recase|regexmatches|regexreplace|releaseglobals|rename|renameitem|replace|replacelist|report|resolvepath|return|rotate|round|row|rtfm|run|runret|savesettings|savethumb|screen|sel|selectitems|self|selfilter|seltab|sendkeys|set|setcolumns|seticons|setkey|setlayout|setting|settingp|showhash|showshellprops|sortby|sound|status|step|strlen|strpos|strrepeat|sub|substr|swapnames|sync|sysicons|tab|tabset|tag|tagitems|taglist|text|timestamp|toolbar|trim|tweak|unset|unstep|unthumb|urldecode|urlencode|userbutton|utf8decode|utf8encode|wait|winpos|winsize|wipe|wmcopydata|writefile|writepv|zip_add|zip_extract|zip_list)))\\b'
     'name': 'support.function.xys'
   }
 ]
+'repository':
+  'code': 'patterns': [
+    { 'include': '#comment' }
+  ]
+  'comment': 'patterns': [
+    {
+    'begin': '/\\*'
+    'captures':
+      '0':
+        'name': 'punctuation.definition.comment.xys'
+    'comment': 'multiline comment'
+    'end': '\\*/'
+    'name': 'comment.block.xys'
+    }
+    {
+      'match': '//.*$'
+      'name': 'comment.line.xys'
+    }
+  ]
 'scopeName': 'source.xys'

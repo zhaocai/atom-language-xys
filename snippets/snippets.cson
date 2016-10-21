@@ -1,5 +1,6 @@
+##
+# coffeelint: disable=max_line_length,indentation,no_tabs
 '.source.xys':
-
 	"if":
 		prefix: "if"
 		body: """
@@ -69,11 +70,11 @@
 
 	"include":
 		prefix: "include"
-		body: "include ${1:\"file\"};"
+		body: "include ${1:\"file\"}"
 
 	"include_once":
 		prefix: "include_once"
-		body: "include_once ${1:\"file\"};"
+		body: "include_once ${1:\"file\"}"
 
 	'Label':
 		prefix: 'label'
@@ -561,6 +562,12 @@
 		prefix: "property"
 		body: "property(${1:\"[property]\"}, ${2:\"[item]\"})$3"
 
+	'quicksearch':
+		prefix: 'quicksearch'
+		body: """
+		quicksearch('${1:*}'${2:, <curpath>}${3:, <crlf>}${4:, s})$0
+		"""
+		description: 'quicksearch([query="*"], [path], [separator="<crlf>"], [flags])'
 
 	"quickfileview":
 		prefix: "quickfileview"
