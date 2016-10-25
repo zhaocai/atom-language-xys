@@ -5,7 +5,7 @@
 		prefix: "if"
 		body: """
 			if (${1:condition}) {
-				${2://statement(s)}
+				${2:/*statement(s)*/}
 			}
 			$3
 		"""
@@ -14,7 +14,7 @@
 		prefix: "else"
 		body: """
 			else {
-				${1://statement(s)}
+				${1:/*statement(s)*/}
 			}
 			$2
 		"""
@@ -23,29 +23,25 @@
 		prefix: "ifelse"
 		body: """
 			if (${1:condition}) {
-				${2://statement(s)}
+				${2:/*statement(s)*/}
 			} else {
-				${3://statement(s)}
-			}
-			$4
+				${3:/*statement(s)*/}
+			} $0
 		"""
 
 	"elseif":
 		prefix: "elseif"
 		body: """
 			elseif (${1:condition}) {
-				${2://statement(s)}
-			} else {
-				${4://statement(s)}
-			}
-			$0
+				${2:/*statement(s)*/}
+			} $0
 		"""
 
 	"foreach":
 		prefix: "foreach"
 		body: """
 			foreach(${1:\$variable}, ${2:listoftokens}, ${3:[separator="|"]}, ${4:[flags]}, ${5:[MsgOnEmpty]}) {
-				${6://statement(s)}
+				${6:/*statement(s)*/}
 			}
 			$7
 		"""
@@ -54,7 +50,7 @@
 		prefix: "while"
 		body: """
 			while (${1:condition}) {
-				${2://statement(s)}
+				${2:/*statement(s)*/}
 			}
 			$3
 		"""
@@ -63,18 +59,18 @@
 		prefix: 'function'
 		body: """
 		function ${1:func}(${2:\$a}) {
-			${3: // statement;}
+			${3:/*statement(s)*/}
 		}
 		$0
 		"""
 
 	"include":
 		prefix: "include"
-		body: "include ${1:\"file\"}"
+		body: "include \"${1:file}\""
 
 	"include_once":
 		prefix: "include_once"
-		body: "include_once ${1:\"file\"}"
+		body: "include_once \"${1:file}\""
 
 	'Label':
 		prefix: 'label'
@@ -90,7 +86,7 @@
 
 	"asc":
 		prefix: "asc"
-		body: "asc(${1:\"string\"})$2"
+		body: "asc(\"${1:string}\")$2"
 
 	"assert":
 		prefix: "assert"
@@ -98,20 +94,20 @@
 
 	"attrstamp":
 		prefix: "attrstamp"
-		body: "attrstamp(${1:\"[attr]\"}, ${2:\"[mode=1]\"}, ${3:\"[itemlist]\"})$4"
+		body: "attrstamp(\"${1:[attr]}\", ${2:\"[mode=1]\"}, ${3:\"[itemlist]\"})$4"
 
 
 	"backupto":
 		prefix: "backupto"
-		body: "backupto(${1:\"destination folder\"}, ${2:\"[source file(s)]\"}, ${3:[on collision]}, ${4:[preserve dates]}, ${5:[create_log]}, ${6:[pop_stats]}, ${7:[skip_junctions]}, ${8:[verify]}, ${9:[show progress]})$10"
+		body: "backupto(\"${1:destination folder}\", ${2:\"[source file(s)]\"}, ${3:[on collision]}, ${4:[preserve dates]}, ${5:[create_log]}, ${6:[pop_stats]}, ${7:[skip_junctions]}, ${8:[verify]}, ${9:[show progress]})$10"
 
 	"base64decode":
 		prefix: "base64decode"
-		body: "base64decode(${1:\"string\"}, ${2:\[flag=0]})$3"
+		body: "base64decode(\"${1:string}\", ${2:\[flag=0]})$3"
 
 	"base64encode":
 		prefix: "base64encode"
-		body: "base64encode(${1:\"string\"}, ${2:\[flag=0]})$3"
+		body: "base64encode(\"${1:string}\", ${2:\[flag=0]})$3"
 
 	"beep":
 		prefix: "beep"
@@ -119,7 +115,7 @@
 
 	"box":
 		prefix: "box"
-		body: "box ${1:\"[color (rrggbb)]\"}, ${2:\"[folder]\"}"
+		body: "box \"${1:[color (rrggbb)]}\", ${2:\"[folder]\"}"
 
 	"br":
 		prefix: "br"
@@ -136,7 +132,7 @@
 
 	"caller":
 		prefix: "caller"
-		body: "caller(${1:\"info\"})$2"
+		body: "caller(\"${1:info}\")$2"
 
 	"catalogload":
 		prefix: "catalogload"
@@ -164,7 +160,7 @@
 
 	"colorfilter":
 		prefix: "colorfilter"
-		body: "colorfilter(${1:\"[filters]\"}, ${2:\"[separator=|]\"})$3"
+		body: "colorfilter(\"${1:[filters]}\", ${2:\"[separator=|]\"})$3"
 
 	"columnlayout":
 		prefix: "columnlayout"
@@ -176,7 +172,7 @@
 
 	"compare":
 		prefix: "compare"
-		body: "compare(${1:\"string1\"}, ${2:\"string2\"}, ${3:\"[method=b]\"})$4"
+		body: "compare(\"${1:string1}\", ${2:\"string2\"}, ${3:\"[method=b]\"})$4"
 
 	"comparehash":
 		prefix: "comparehash"
@@ -192,15 +188,15 @@
 
 	"copier":
 		prefix: "copier"
-		body: "copier(${1:\"[Caption|Executable|Copy Switches|Move Switches]\"})$2"
+		body: "copier(\"${1:[Caption|Executable|Copy Switches|Move Switches]}\")$2"
 
 	"copy":
 		prefix: "copy"
-		body: "copy ${1:\"itemlist (separated by |)\"}"
+		body: "copy \"${1:itemlist (separated by |)}\""
 
 	"copyas":
 		prefix: "copyas"
-		body: "copyas ${1:\"[pattern]\"}, ${2:\"[targetpath]\"}, ${3:\"[itemlist (separated by |)]\"}"
+		body: "copyas \"${1:[pattern]}\", ${2:\"[targetpath]\"}, ${3:\"[itemlist (separated by |)]\"}"
 
 	"copydata":
 		prefix: "copydata"
@@ -208,7 +204,7 @@
 
 	"copyitem":
 		prefix: "copyitem"
-		body: "copyitem ${1:\"[item]\"}, ${2:\"[copy]\"}"
+		body: "copyitem \"${1:[item]}\", ${2:\"[copy]\"}"
 
 	"copytext":
 		prefix: "copytext"
@@ -216,24 +212,24 @@
 
 	"copyto":
 		prefix: "copyto"
-		body: "copyto ${1:\"destination folder\"}, ${2:\"[source file(s)]\"}, ${3:\"[rootpath]\"}, ${4:[flags]}"
+		body: "copyto \"${1:destination folder}\", ${2:\"[source file(s)]\"}, ${3:\"[rootpath]\"}, ${4:[flags]}"
 
 	"ctbicon":
 		prefix: "ctbicon"
-		body: "ctbicon(${1:\"[icon]\"}, ${2:[button_index]})$3"
+		body: "ctbicon(\"${1:[icon]}\", ${2:[button_index]})$3"
 
 	"ctbname":
 		prefix: "ctbname"
-		body: "ctbname(${1:\"[name]\"}, ${2:[button_index]})$3"
+		body: "ctbname(\"${1:[name]}\", ${2:[button_index]})$3"
 
 	"ctbstate":
 		prefix: "ctbstate"
-		body: "ctbstate ${1:\"[state (0|1)]\"}, ${2:[button_index]}"
+		body: "ctbstate \"${1:[state (0|1)]}\", ${2:[button_index]}"
 
 
 	"datediff":
 		prefix: "datediff"
-		body: "datediff(${1:\"date1\"}, ${2:\"[date2=now]\"}, ${3:\"[interval=d]\"})$4"
+		body: "datediff(\"${1:date1}\", ${2:\"[date2=now]\"}, ${3:\"[interval=d]\"})$4"
 
 	"delete":
 		prefix: "delete"
@@ -250,7 +246,7 @@
 
 	"echo":
 		prefix: "echo"
-		body: "echo ${1:\"text\"}, ${2:\"[topic]\"}, ${3:\"[notes]\"}, ${4:[icon=6]}"
+		body: "echo \"${1:text}\", ${2:\"[topic]\"}, ${3:\"[notes]\"}, ${4:[icon=6]}"
 
 	"edittags":
 		prefix: "edittags"
@@ -270,7 +266,7 @@
 
 	"escapeunicode":
 		prefix: "escapeunicode"
-		body: "escapeunicode ${1:\"string\"}"
+		body: "escapeunicode \"${1:string}\""
 
 	"eval":
 		prefix: "eval"
@@ -282,11 +278,11 @@
 
 	"exists":
 		prefix: "exists"
-		body: "exists(${1:\"item\"})$2"
+		body: "exists(\"${1:item}\")$2"
 
 	"exit":
 		prefix: "exit"
-		body: "exit(${1:\"[mode]\"})$2"
+		body: "exit(\"${1:[mode]}\")$2"
 
 	"extracttext":
 		prefix: "extracttext"
@@ -299,19 +295,19 @@
 
 	"filesequal":
 		prefix: "filesequal"
-		body: "filesequal(${1:\"[file1]\"}, ${2:\"[file2]\"}, ${3:\"[algo]\"})$4"
+		body: "filesequal(\"${1:[file1]}\", ${2:\"[file2]\"}, ${3:\"[algo]\"})$4"
 
 	"filesize":
 		prefix: "filesize"
-		body: "filesize(${1:\"[filename]\"})$2"
+		body: "filesize(\"${1:[filename]}\")$2"
 
 	"filetype":
 		prefix: "filetype"
-		body: "filetype(${1:\"file\"})$2"
+		body: "filetype(\"${1:file}\")$2"
 
 	"filter":
 		prefix: "filter"
-		body: "filter ${1:\"[filterspec]\"}, ${2:[flags]}"
+		body: "filter \"${1:[filterspec]}\", ${2:[flags]}"
 
 	"floor":
 		prefix: "floor"
@@ -319,11 +315,11 @@
 
 	"focus":
 		prefix: "focus"
-		body: "focus ${1:\"[control (L|A|T|C|P1|P2|PI)]\"}"
+		body: "focus \"${1:[control (L|A|T|C|P1|P2|PI)]}\""
 
 	"folderreport":
 		prefix: "folderreport"
-		body: "folderreport(${1:\"[type]\"}, ${2:\"[target]\"}, ${3:\"[folder]\"}, ${4:\"[flags]\"}, ${5:\"[outputfile]\"}, ${6:\"[separator]\"})$7"
+		body: "folderreport(\"${1:[type]}\", ${2:\"[target]\"}, ${3:\"[folder]\"}, ${4:\"[flags]\"}, ${5:\"[outputfile]\"}, ${6:\"[separator]\"})$7"
 
 	"foldersize":
 		prefix: "foldersize"
@@ -335,11 +331,11 @@
 
 	"formatbytes":
 		prefix: "formatbytes"
-		body: "formatbytes(${1:\"bytes\"}, ${2:\"[format=FLEX]\"}, ${3:[decimals=-1]})$4"
+		body: "formatbytes(\"${1:bytes}\", ${2:\"[format=FLEX]\"}, ${3:[decimals=-1]})$4"
 
 	"formatdate":
 		prefix: "formatdate"
-		body: "formatdate(${1:\"[date]\"}, ${2:\"[format]\"}, ${3:\"[shift_unit]\"}, ${4:[shift_num]})$5"
+		body: "formatdate(\"${1:[date]}\", ${2:\"[format]\"}, ${3:\"[shift_unit]\"}, ${4:[shift_num]})$5"
 
 	"formatlist":
 		prefix: "formatlist"
@@ -368,19 +364,19 @@
 
 	"getpathcomponent":
 		prefix: "getpathcomponent"
-		body: "getpathcomponent(${1:\"[path]\"}, ${2:\"[component]\"}, ${3:[index=1]})$4"
+		body: "getpathcomponent(\"${1:[path]}\", ${2:\"[component]\"}, ${3:[index=1]})$4"
 
 	"getsectionlist":
 		prefix: "getsectionlist"
-		body: "getsectionlist(${1:\"[section]\"}, ${2:[INIfile]}, ${3:\"[separator=CRLF]\"})$4"
+		body: "getsectionlist(\"${1:[section]}\", ${2:[INIfile]}, ${3:\"[separator=CRLF]\"})$4"
 
 	"gettoken":
 		prefix: "gettoken"
-		body: "gettoken(${1:\"string\"}, ${2:[index=1]}, ${3:\"[separator=\" \"]\"}, ${4:[format]})$5"
+		body: "gettoken(\"${1:string}\", ${2:[index=1]}, ${3:\"[separator=\" \"]\"}, ${4:[format]})$5"
 
 	"gettokenindex":
 		prefix: "gettokenindex"
-		body: "gettokenindex(${1:\"token\"}, ${2:\"tokenlist\"}, ${3:\"[separator=|]\"}, ${4:\"[flags=i|w]\"})$5"
+		body: "gettokenindex(\"${1:token}\", ${2:\"tokenlist\"}, ${3:\"[separator=|]\"}, ${4:\"[flags=i|w]\"})$5"
 
 	"global":
 		prefix: "global"
@@ -393,11 +389,11 @@
 
 	"hash":
 		prefix: "hash"
-		body: "hash(${1:\"[algo=md5]\"}, ${2:\"[string]\"}, ${3:[flags]})$4"
+		body: "hash(\"${1:[algo=md5]}\", ${2:\"[string]\"}, ${3:[flags]})$4"
 
 	"hashlist":
 		prefix: "hashlist"
-		body: "hashlist ${1:\"[algo=md5]\"}, ${2:\"[filelist]\"}"
+		body: "hashlist \"${1:[algo=md5]}\", ${2:\"[filelist]\"}"
 
 	"help":
 		prefix: "help"
@@ -405,7 +401,7 @@
 
 	"hexdump":
 		prefix: "hexdump"
-		body: "hexdump(${1:\"string\"}, ${2:[unicode]})$3"
+		body: "hexdump(\"${1:string}\", ${2:[unicode]})$3"
 
 	"hextodec":
 		prefix: "hextodec"
@@ -413,11 +409,11 @@
 
 	"highlight":
 		prefix: "highlight"
-		body: "highlight ${1:\"[color (rrggbb)]\"}, ${2:\"[folder]\"}"
+		body: "highlight \"${1:[color (rrggbb)]}\", ${2:\"[folder]\"}"
 
 	"html":
 		prefix: "html"
-		body: "html(${1:\"[html]\"}, ${2:[width=600]}, ${3:[height=400]}, ${4:\"[caption=XYplorer]\"})$5"
+		body: "html(\"${1:[html]}\", ${2:[width=600]}, ${3:[height=400]}, ${4:\"[caption=XYplorer]\"})$5"
 
 
 
@@ -435,11 +431,11 @@
 
 	"inputfile":
 		prefix: "inputfile"
-		body: "inputfile(${1:\"[path]\"}, ${2:\"[extension]\"}, ${3:\"[caption]\"})$4"
+		body: "inputfile(\"${1:[path]}\", ${2:\"[extension]\"}, ${3:\"[caption]\"})$4"
 
 	"inputfolder":
 		prefix: "inputfolder"
-		body: "inputfolder(${1:\"[path]\"}, ${2:\"[caption]\"})$3"
+		body: "inputfolder(\"${1:[path]}\", ${2:\"[caption]\"})$3"
 
 	"inputselect":
 		prefix: "inputselect"
@@ -455,20 +451,20 @@
 
 	"isunicode":
 		prefix: "isunicode"
-		body: "isunicode(${1:\"string\"}, ${2:[mindcodepage]})$3"
+		body: "isunicode(\"${1:string}\", ${2:[mindcodepage]})$3"
 
 
 	"listfolder":
 		prefix: "listfolder"
-		body: "listfolder(${1:\"[path]\"}, ${2:\"[pattern=*]\"}, ${3:[flags]}, ${4:\"[separator=|]\"})$5"
+		body: "listfolder(\"${1:[path]}\", ${2:\"[pattern=*]\"}, ${3:[flags]}, ${4:\"[separator=|]\"})$5"
 
 	"listpane":
 		prefix: "listpane"
-		body: "listpane(${1:\"[pane=a]\"}, ${2:\"[pattern=*]\"}, ${3:[flags]}, ${4:\"[separator=|]\"})$5"
+		body: "listpane(\"${1:[pane=a]}\", ${2:\"[pattern=*]\"}, ${3:[flags]}, ${4:\"[separator=|]\"})$5"
 
 	"load":
 		prefix: "load"
-		body: "load ${1:\"resource\"}, ${2:\"[labels]\"}, ${3:[resource type]}"
+		body: "load \"${1:resource}\", ${2:\"[labels]\"}, ${3:[resource type]}"
 
 	"loadlayout":
 		prefix: "loadlayout"
@@ -480,7 +476,7 @@
 
 	"loadtree":
 		prefix: "loadtree"
-		body: "loadtree ${1:\"[pathlist (separated by |)]\"}, ${2:[modify=0]}"
+		body: "loadtree \"${1:[pathlist (separated by |)]}\", ${2:[modify=0]}"
 
 	"logchange":
 		prefix: "logchange"
@@ -488,7 +484,7 @@
 
 	"logon":
 		prefix: "logon"
-		body: "logon ${1:\"path\"}"
+		body: "logon \"${1:path}\""
 
 	"logtofile":
 		prefix: "logtofile"
@@ -505,11 +501,11 @@
 
 	"moveas":
 		prefix: "moveas"
-		body: "moveas ${1:\"[pattern]\"}, ${2:\"[targetpath]\"}, ${3:\"[itemlist (separated by |)]\"}"
+		body: "moveas \"${1:[pattern]}\", ${2:\"[targetpath]\"}, ${3:\"[itemlist (separated by |)]\"}"
 
 	"moveto":
 		prefix: "moveto"
-		body: "moveto ${1:\"destination folder\"}, ${2:\"[source file(s)]\"}, ${3:\"[rootpath]\"}, ${4:[flags]}"
+		body: "moveto \"${1:destination folder}\", ${2:\"[source file(s)]\"}, ${3:\"[rootpath]\"}, ${4:[flags]}"
 
 	"msecs":
 		prefix: "msecs"
@@ -522,29 +518,29 @@
 
 	"new":
 		prefix: "new"
-		body: "new(${1:\"name\"}, ${2:\"[type=file|dir]\"}, ${3:\"[source]\"}, ${4:[rename=r]})$5"
+		body: "new(\"${1:name}\", ${2:\"[type=file|dir]\"}, ${3:\"[source]\"}, ${4:[rename=r]})$5"
 
 	"now":
 		prefix: "now"
-		body: "now(${1:\"[format]\"})$2"
+		body: "now(\"${1:[format]}\")$2"
 
 
 	"open":
 		prefix: "open"
-		body: "open ${1:\"item\"}, ${2:[Windows (|w)]}"
+		body: "open \"${1:item}\", ${2:[Windows (|w)]}"
 
 	"openwith":
 		prefix: "openwith"
-		body: "openwith ${1:\"application\"}, ${2:[mode (s|m)]}, ${3:\"[itemlist (separated by |)]\"}"
+		body: "openwith \"${1:application}\", ${2:[mode (s|m)]}, ${3:\"[itemlist (separated by |)]\"}"
 
 
 	"paperfolder":
 		prefix: "paperfolder"
-		body: "paperfolder(${1:\"name\"}, ${2:\"[itemlist]\"}, ${3:\"[separator=CRLF]\"}, ${4:\"[mode=nl]\"})$5"
+		body: "paperfolder(\"${1:name}\", ${2:\"[itemlist]\"}, ${3:\"[separator=CRLF]\"}, ${4:\"[mode=nl]\"})$5"
 
 	"pasteto":
 		prefix: "pasteto"
-		body: "pasteto ${1:\"[destination]\"}"
+		body: "pasteto \"${1:[destination]}\""
 
 	"perm":
 		prefix: "perm"
@@ -552,15 +548,15 @@
 
 	"popupmainmenu":
 		prefix: "popupmainmenu"
-		body: "popupmainmenu ${1:\"[submenu]\"}"
+		body: "popupmainmenu \"${1:[submenu]}\""
 
 	"popupmenu":
 		prefix: "popupmenu"
-		body: "popupmenu(${1:\"itemlist (separated by sep_itemlist)\"}, ${2:[x=-1]}, ${3:[y=-1]}, ${4:[start=1]}, ${5:[count=-1]}, ${6:[flags=0]}, ${7:[sep_itemlist=\"|\"]}, ${8:[sep_item=\";\"]}, ${9:[on_cancel=\"\"]})$10"
+		body: "popupmenu(\"${1:itemlist (separated by sep_itemlist)}\", ${2:[x=-1]}, ${3:[y=-1]}, ${4:[start=1]}, ${5:[count=-1]}, ${6:[flags=0]}, ${7:[sep_itemlist=\"|\"]}, ${8:[sep_item=\";\"]}, ${9:[on_cancel=\"\"]})$10"
 
 	"property":
 		prefix: "property"
-		body: "property(${1:\"[property]\"}, ${2:\"[item]\"})$3"
+		body: "property(\"${1:[property]}\", ${2:\"[item]\"})$3"
 
 	'quicksearch':
 		prefix: 'quicksearch'
@@ -571,11 +567,11 @@
 
 	"quickfileview":
 		prefix: "quickfileview"
-		body: "quickfileview ${1:\"[filename]\"}, ${2:[codepage]}"
+		body: "quickfileview \"${1:[filename]}\", ${2:[codepage]}"
 
 	"quote":
 		prefix: "quote"
-		body: "quote(${1:\"[string]\"}, ${2:[flags=0]})$3"
+		body: "quote(\"${1:[string]}\", ${2:[flags=0]})$3"
 
 
 	"rand":
@@ -584,27 +580,27 @@
 
 	"readfile":
 		prefix: "readfile"
-		body: "readfile(${1:\"filename\"}, ${2:\"[mode]\"}, ${3:[numbytes]}, ${4:[codepage]}, ${5:[start=1]})$6"
+		body: "readfile(\"${1:filename}\", ${2:\"[mode]\"}, ${3:[numbytes]}, ${4:[codepage]}, ${5:[start=1]})$6"
 
 	"readpv":
 		prefix: "readpv"
-		body: "readpv ${1:\"[file]\"}"
+		body: "readpv \"${1:[file]}\""
 
 	"readurl":
 		prefix: "readurl"
-		body: "readurl(${1:\"url\"}, ${2:[nocookies]}, ${3:[StripHTML]}, ${4:[flags]})$5"
+		body: "readurl(\"${1:url}\", ${2:[nocookies]}, ${3:[StripHTML]}, ${4:[flags]})$5"
 
 	"recase":
 		prefix: "recase"
-		body: "recase(${1:\"string\"}, ${2:\"[mode]\"}, ${3:[flags]})$4"
+		body: "recase(\"${1:string}\", ${2:\"[mode]\"}, ${3:[flags]})$4"
 
 	"regexmatches":
 		prefix: "regexmatches"
-		body: "regexmatches(${1:\"string\"}, \"${2:[pattern]}\", \"${3:[separator=|]}\", ${4:[matchcase=0]})$5"
+		body: "regexmatches(\"${1:string}\", \"${2:[pattern]}\", \"${3:[separator=|]}\", ${4:[matchcase=0]})$5"
 
 	"regexreplace":
 		prefix: "regexreplace"
-		body: "regexreplace(${1:\"string\"}, \"${2:[pattern]}\", \"${3:[replacement]}\", ${4:[matchcase=0]})$5"
+		body: "regexreplace(\"${1:string}\", \"${2:[pattern]}\", \"${3:[replacement]}\", ${4:[matchcase=0]})$5"
 
 	"releaseglobals":
 		prefix: "releaseglobals"
@@ -616,23 +612,23 @@
 
 	"renameitem":
 		prefix: "renameitem"
-		body: "renameitem(${1:\"newname\"}, ${2:\"[sourceitem=(curitem)]\"}, ${3:[flags=0]}, ${4:\"[numsuffix]\"})$5"
+		body: "renameitem(\"${1:newname}\", ${2:\"[sourceitem=(curitem)]\"}, ${3:[flags=0]}, ${4:\"[numsuffix]\"})$5"
 
 	"replace":
 		prefix: "replace"
-		body: "replace(${1:\"string\"}, ${2:\"search\"}, ${3:\"replacement\"}, ${4:[matchcase]}, ${5:[start=1]}, ${6:[count=-1]})$7"
+		body: "replace(\"${1:string}\", ${2:\"search\"}, ${3:\"replacement\"}, ${4:[matchcase]}, ${5:[start=1]}, ${6:[count=-1]})$7"
 
 	"replacelist":
 		prefix: "replacelist"
-		body: "replacelist(${1:\"string\"}, ${2:\"searchlist\"}, ${3:\"[replacelist]\"}, ${4:\"[separator]\"}, ${5:[matchcase]}, ${6:[scope=0]})$7"
+		body: "replacelist(\"${1:string}\", ${2:\"searchlist\"}, ${3:\"[replacelist]\"}, ${4:\"[separator]\"}, ${5:[matchcase]}, ${6:[scope=0]})$7"
 
 	"report":
 		prefix: "report"
-		body: "report(${1:\"[template]\"}, ${2:\"[itemlist (separated by |)]\"}, ${3:\"[header]\"}, ${4:\"[footer]\"})$5"
+		body: "report(\"${1:[template]}\", ${2:\"[itemlist (separated by |)]\"}, ${3:\"[header]\"}, ${4:\"[footer]\"})$5"
 
 	"resolvepath":
 		prefix: "resolvepath"
-		body: "resolvepath(${1:\"[path]\"}, ${2:\"[base=(xypath)\\]\"}, ${3:[abs2rel]})$4"
+		body: "resolvepath(\"${1:[path]}\", ${2:\"[base=(xypath)\\]\"}, ${3:[abs2rel]})$4"
 
 	"return":
 		prefix: "return"
@@ -656,11 +652,11 @@
 
 	"run":
 		prefix: "run"
-		body: "run ${1:\"command\"}, ${2:\"[directory]\"}, ${3:[wait=0]}, ${4:[show=1]}"
+		body: "run \"${1:command}\", ${2:\"[directory]\"}, ${3:[wait=0]}, ${4:[show=1]}"
 
 	"runret":
 		prefix: "runret"
-		body: "runret(${1:\"command\"}, ${2:\"[directory]\"})$3"
+		body: "runret(\"${1:command}\", ${2:\"[directory]\"})$3"
 
 
 	"savesettings":
@@ -669,7 +665,7 @@
 
 	"savethumb":
 		prefix: "savethumb"
-		body: "savethumb(${1:\"file=<curitem>\"}, ${2:\"thumbnail_file=*_thumb\"}, ${3:[widthbox=500]}, ${4:[heightbox=500]}, ${5:[format=jpg]}, ${6:[border_width]})"
+		body: "savethumb(\"${1:file=<curitem>}\", ${2:\"thumbnail_file=*_thumb\"}, ${3:[widthbox=500]}, ${4:[heightbox=500]}, ${5:[format=jpg]}, ${6:[border_width]})"
 
 	"screen":
 		prefix: "screen"
@@ -677,23 +673,23 @@
 
 	"sel":
 		prefix: "sel"
-		body: "sel ${1:\"[position/pattern]\"}, ${2:[count]}, ${3:[startfromtop]}"
+		body: "sel \"${1:[position/pattern]}\", ${2:[count]}, ${3:[startfromtop]}"
 
 	"selectitems":
 		prefix: "selectitems"
-		body: "selectitems ${1:\"itemlist (separated by |)\"}, ${2:[flags=0(1|2)]}, ${3:[focusfirst=1]}, ${4:\"[mode]\"}, ${5:\"[pane=a|i|1|2]\"}"
+		body: "selectitems \"${1:itemlist (separated by |)}\", ${2:[flags=0(1|2)]}, ${3:[focusfirst=1]}, ${4:\"[mode]\"}, ${5:\"[pane=a|i|1|2]\"}"
 
 	"self":
 		prefix: "self"
-		body: "self(${1:\"info\"})$2"
+		body: "self(\"${1:info}\")$2"
 
 	"selfilter":
 		prefix: "selfilter"
-		body: "selfilter ${1:\"[pattern]\"}, ${2:[type (f|d)]}, ${3:\"[column]\"}, ${4:[add]}"
+		body: "selfilter \"${1:[pattern]}\", ${2:[type (f|d)]}, ${3:\"[column]\"}, ${4:[add]}"
 
 	"seltab":
 		prefix: "seltab"
-		body: "seltab ${1:\"[position]\"}, ${2:[mru]}"
+		body: "seltab \"${1:[position]}\", ${2:[mru]}"
 
 	"sendkeys":
 		prefix: "sendkeys"
@@ -701,51 +697,51 @@
 
 	"set":
 		prefix: "set"
-		body: "set ${1:\"output\"}, ${2:\"value\"}, ${3:\"[reprocess]\"}"
+		body: "set \"${1:output}\", ${2:\"value\"}, ${3:\"[reprocess]\"}"
 
 	"setcolumns":
 		prefix: "setcolumns"
-		body: "setcolumns(${1:\"[columns]\"}, ${2:[flags=0]}, ${3:[position]})$4"
+		body: "setcolumns(\"${1:[columns]}\", ${2:[flags=0]}, ${3:[position]})$4"
 
 	"seticons":
 		prefix: "seticons"
-		body: "seticons(${1:\"[definitions]\"}, ${2:\"[mode=a]\"}, ${3:[position=1]}, ${4:\"[separator=CRLF]\"})$5"
+		body: "seticons(\"${1:[definitions]}\", ${2:\"[mode=a]\"}, ${3:[position=1]}, ${4:\"[separator=CRLF]\"})$5"
 
 	"setkey":
 		prefix: "setkey"
-		body: "setkey ${1:\"value\"}, ${2:\"key\"}, ${3:\"section\"}, ${4:\"[INIfile]\"}, ${5:[flags]}"
+		body: "setkey \"${1:value}\", ${2:\"key\"}, ${3:\"section\"}, ${4:\"[INIfile]\"}, ${5:[flags]}"
 
 	"setlayout":
 		prefix: "setlayout"
-		body: "setlayout(${1:\"[layout]\"}, ${2:\"[separator=\",\"]\"})$3"
+		body: "setlayout(\"${1:[layout]}\", ${2:\"[separator=\",\"]\"})$3"
 
 	"setting":
 		prefix: "setting"
-		body: "setting ${1:\"name\"}, ${2:[value (1|0|r)]}, ${3:[permanent (p)]}"
+		body: "setting \"${1:name}\", ${2:[value (1|0|r)]}, ${3:[permanent (p)]}"
 
 	"settingp":
 		prefix: "settingp"
-		body: "settingp ${1:\"name\"}, ${2:[value (1|0)]}"
+		body: "settingp \"${1:name}\", ${2:[value (1|0)]}"
 
 	"showhash":
 		prefix: "showhash"
-		body: "showhash ${1:\"[file]\"}"
+		body: "showhash \"${1:[file]}\""
 
 	"showshellprops":
 		prefix: "showshellprops"
-		body: "showshellprops ${1:\"[item=%personalreal%]\"}"
+		body: "showshellprops \"${1:[item=%personalreal%]}\""
 
 	"sortby":
 		prefix: "sortby"
-		body: "sortby ${1:\"[column]\"}, ${2:[order (a|d|clk)]}, ${3:[secondary_sort (0|1)]}"
+		body: "sortby \"${1:[column]}\", ${2:[order (a|d|clk)]}, ${3:[secondary_sort (0|1)]}"
 
 	"sound":
 		prefix: "sound"
-		body: "sound ${1:\"[sound]\"}, ${2:[loop]}, ${3:[event]}"
+		body: "sound \"${1:[sound]}\", ${2:[loop]}, ${3:[event]}"
 
 	"status":
 		prefix: "status"
-		body: "status ${1:\"text\"}, ${2:\"[color rrggbb]\"}, ${3:\"[icon=ready|progress|alert|stop]\"}"
+		body: "status \"${1:text}\", ${2:\"[color rrggbb]\"}, ${3:\"[icon=ready|progress|alert|stop]\"}"
 
 	'step':
 		prefix: 'step'
@@ -757,23 +753,23 @@
 
 	"strlen":
 		prefix: "strlen"
-		body: "strlen(${1:\"string\"})$2"
+		body: "strlen(\"${1:string}\")$2"
 
 	"strpos":
 		prefix: "strpos"
-		body: "strpos(${1:\"haystack\"}, ${2:\"needle\"}, ${3:[start]}, ${4:[matchcase]})$5"
+		body: "strpos(\"${1:haystack}\", ${2:\"needle\"}, ${3:[start]}, ${4:[matchcase]})$5"
 
 	"strrepeat":
 		prefix: "strrepeat"
-		body: "strrepeat(${1:\"string\"}, ${2:[count=0]})$3"
+		body: "strrepeat(\"${1:string}\", ${2:[count=0]})$3"
 
 	"sub":
 		prefix: "sub"
-		body: "sub ${1:\"label\"}"
+		body: "sub \"${1:label}\""
 
 	"substr":
 		prefix: "substr"
-		body: "substr(${1:\"string\"}, ${2:[start]}, ${3:[length]})$4"
+		body: "substr(\"${1:string}\", ${2:[start]}, ${3:[length]})$4"
 
 	"swapnames":
 		prefix: "swapnames"
@@ -781,7 +777,7 @@
 
 	"sync":
 		prefix: "sync"
-		body: "sync(${1:\"[command]\"}, ${2:[justcalc]}, ${3:[ignoreextensions]}, ${4:[mode]}, ${5:[inactivepane]})$6"
+		body: "sync(\"${1:[command]}\", ${2:[justcalc]}, ${3:[ignoreextensions]}, ${4:[mode]}, ${5:[inactivepane]})$6"
 
 	"sysicons":
 		prefix: "sysicons"
@@ -790,27 +786,27 @@
 
 	"tab":
 		prefix: "tab"
-		body: "tab(${1:\"[operation]\"}, ${2:\"[data]\"}, ${3:[index]})$4"
+		body: "tab(\"${1:[operation]}\", \"${2:[data]}\", ${3:[index]})$4"
 
 	"tabset":
 		prefix: "tabset"
-		body: "tabset(${1:\"[operation=open]\"}, ${2:\"[name]\"}, ${3:\"[pane=a]\"})$4"
+		body: "tabset(\"${1:[operation=open]}\", ${2:\"[name]\"}, ${3:\"[pane=a]\"})$4"
 
 	"tag":
 		prefix: "tag"
-		body: "tag ${1:\"[value]\"}, ${2:\"[itemlist (separated by |)]\"}, ${3:[type=0]}, ${4:[tagsmode=0]}"
+		body: "tag \"${1:[value]}\", ${2:\"[itemlist (separated by |)]\"}, ${3:[type=0]}, ${4:[tagsmode=0]}"
 
 	"tagitems":
 		prefix: "tagitems"
-		body: "tagitems(${1:\"[field]\"}, ${2:\"[value]\"}, ${3:[itemlist]})$4"
+		body: "tagitems(\"${1:[field]}\", ${2:\"[value]\"}, ${3:[itemlist]})$4"
 
 	"taglist":
 		prefix: "taglist"
-		body: "taglist(${1:\"[tags]\"}, ${2:[flags=0]})$3"
+		body: "taglist(\"${1:[tags]}\", ${2:[flags=0]})$3"
 
 	"text":
 		prefix: "text"
-		body: "text ${1:\"text\"}, ${2:[width=600]}, ${3:[height=400]}, ${4:\"[caption]\"}, ${5:[wrap]}, ${6:\"[linebreaker]\"}"
+		body: "text \"${1:text}\", ${2:[width=600]}, ${3:[height=400]}, ${4:\"[caption]\"}, ${5:[wrap]}, ${6:\"[linebreaker]\"}"
 
 	"timestamp":
 		prefix: "timestamp"
@@ -818,15 +814,15 @@
 
 	"toolbar":
 		prefix: "toolbar"
-		body: "toolbar(${1:\"[buttons]\"}, \"${2:[large]})$3"
+		body: "toolbar(\"${1:[buttons]}\", \"${2:[large]})$3"
 
 	"trim":
 		prefix: "trim"
-		body: "trim(${1:\"string\"}, ${2:\"[charlist=\" \"]\"}, ${3:\"[mode=\"LR\"]\"})$4"
+		body: "trim(\"${1:string}\", ${2:\"[charlist=\" \"]\"}, ${3:\"[mode=\"LR\"]\"})$4"
 
 	"tweak":
 		prefix: "tweak"
-		body: "tweak(${1:\"[key]\"}, \"${2:\"[value]\"})$3"
+		body: "tweak(\"${1:[key]}\", \"${2:\"[value]\"})$3"
 
 
 	"unset":
@@ -839,15 +835,15 @@
 
 	"unthumb":
 		prefix: "unthumb"
-		body: "unthumb ${1:\"[pane=a]\"}"
+		body: "unthumb \"${1:[pane=a]}\""
 
 	"urldecode":
 		prefix: "urldecode"
-		body: "urldecode(${1:\"string\"}, ${2:raw=0})$3"
+		body: "urldecode(\"${1:string}\", ${2:raw=0})$3"
 
 	"urlencode":
 		prefix: "urlencode"
-		body: "urlencode(${1:\"string\"}, ${2:raw=0})$3"
+		body: "urlencode(\"${1:string}\", ${2:raw=0})$3"
 
 	"userbutton":
 		prefix: "userbutton"
@@ -855,11 +851,11 @@
 
 	"utf8decode":
 		prefix: "utf8decode"
-		body: "utf8decode(${1:\"string\"})$2"
+		body: "utf8decode(\"${1:string}\")$2"
 
 	"utf8encode":
 		prefix: "utf8encode"
-		body: "utf8encode(${1:\"string\"})$2"
+		body: "utf8encode(\"${1:string}\")$2"
 
 
 	"wait":
@@ -876,7 +872,7 @@
 
 	"wipe":
 		prefix: "wipe"
-		body: "wipe ${1:\"[itemlist (separated by |)]\"}"
+		body: "wipe \"${1:[itemlist (separated by |)]}\""
 
 	"wmcopydata":
 		prefix: "wmcopydata"
@@ -884,21 +880,21 @@
 
 	"writefile":
 		prefix: "writefile"
-		body: "writefile(${1:\"filename\"}, ${2:\"data\"}, ${3:\"[on_exist]\"}, ${4:\"[mode]\"})$5"
+		body: "writefile(\"${1:filename}\", ${2:\"data\"}, ${3:\"[on_exist]\"}, ${4:\"[mode]\"})$5"
 
 	"writepv":
 		prefix: "writepv"
-		body: "writepv ${1:\"[file]\"}"
+		body: "writepv \"${1:[file]}\""
 
 
 	"zip_add":
 		prefix: "zip_add"
-		body: "zip_add(${1:\"zipfile\"}, ${2:\"items\"}, ${3:\"[separator=|]\"})$4"
+		body: "zip_add(\"${1:zipfile}\", ${2:\"items\"}, ${3:\"[separator=|]\"})$4"
 
 	"zip_extract":
 		prefix: "zip_extract"
-		body: "zip_extract(${1:\"zipfile\"}, ${2:\"path\"}, ${3:\"[items]\"}, ${4:\"[separator=|]\"})$5"
+		body: "zip_extract(\"${1:zipfile}\", ${2:\"path\"}, ${3:\"[items]\"}, ${4:\"[separator=|]\"})$5"
 
 	"zip_list":
 		prefix: "zip_list"
-		body: "zip_list(${1:\"zipfile\"}, ${2:\"[separator=|]\"}, ${3:flags (0|1)})$4"
+		body: "zip_list(\"${1:zipfile}\", ${2:\"[separator=|]\"}, ${3:flags (0|1)})$4"
