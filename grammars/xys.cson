@@ -51,7 +51,7 @@
   }
   {
     'match': '(?i:\\s*(local|global|perm))'
-    'name': 'entity.name.declaration.xys'
+    'name': 'storage.type.xys'
   }
   {
     'match': '(?i:\\b(foreach|break|continue|while|if|else|elseif)\\b)'
