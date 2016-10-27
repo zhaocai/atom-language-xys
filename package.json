@@ -1,6 +1,6 @@
 {
   "name": "language-xys",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "XYplorer script syntax highlighting for Atom",
   "keywords": [
     "language",
