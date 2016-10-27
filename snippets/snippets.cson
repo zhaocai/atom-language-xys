@@ -247,6 +247,7 @@
 	"echo":
 		prefix: "echo"
 		body: "echo \"${1:text}\", ${2:\"[topic]\"}, ${3:\"[notes]\"}, ${4:[icon=6]}"
+		description: "echo text, [topic], [notes], [icon=0..8]"
 
 	"edittags":
 		prefix: "edittags"
@@ -254,7 +255,7 @@
 
 	"end":
 		prefix: "end"
-		body: "end ${1:condition}, ${2:\"[message]\"}, ${3:[scope=0]}"
+		body: "end ${1:true}, \"${2:[message]}\", ${3:[scope=0|1]}"
 
 	"enumshellfolderitems":
 		prefix: "enumshellfolderitems"
@@ -445,6 +446,14 @@
 		prefix: "internetflags"
 		body: "internetflags \"${1:name=}INTERNET_FLAG_NO_COOKIES\", ${2:[value]}"
 
+	'if not set variable':
+		prefix: 'ifnotset'
+		body: """
+		if (!isset(\$${1:XY_PERM_VAR})) {
+			perm \$$1 = ${2}
+		} $0
+		"""
+
 	"isset":
 		prefix: "isset"
 		body: "isset(${1:variable})$2"
@@ -513,8 +522,8 @@
 
 	"msg":
 		prefix: "msg"
-		body: "msg \"${1:text}\", ${2:[buttons]}, ${3:\"[linebreaker]\"}"
-
+		body: "msg \"${1:text}\", ${2:[buttons=0|1]}$0"
+		description: "msg text [0->OK|1->OK, Cancel] [linebreaker=<br>]"
 
 	"new":
 		prefix: "new"
@@ -806,7 +815,8 @@
 
 	"text":
 		prefix: "text"
-		body: "text \"${1:text}\", ${2:[width=600]}, ${3:[height=400]}, ${4:\"[caption]\"}, ${5:[wrap]}, ${6:\"[linebreaker]\"}"
+		body: "text \"${1:text}\"$0"
+		description: "text text, [width=600], [height=400], [caption], [wrap], [linebreaker=\"<br>\"]"
 
 	"timestamp":
 		prefix: "timestamp"
