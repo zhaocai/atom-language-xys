@@ -40,11 +40,12 @@
 	"foreach":
 		prefix: "foreach"
 		body: """
-			foreach(${1:\$variable}, ${2:listoftokens}, ${3:/*separator="|"*/}, ${4:/*flags*/}, ${5:/*MsgOnEmpty*/}) {
+			foreach(\$${1:variable}, \$${2:ListOfTokens}, ${3:/*separator="|"*/}, ${4:/*flags*/}) {
 				${6:/*statement(s)*/}
 			}
 			$7
 		"""
+		description: 'foreach($variable, ListOfTokens, [separator="|"], [flags=|e|r], [MsgOnEmpty])'
 
 	"while":
 		prefix: "while"
@@ -66,7 +67,7 @@
 	'Function':
 		prefix: 'function'
 		body: """
-		function ${1:func}(${2:\$a}) {
+		function ${1:func}(${2:\$arg}) {
 			${3:/*statement(s)*/}
 		}
 		$0
@@ -94,7 +95,7 @@
 
 	"asc":
 		prefix: "asc"
-		body: "asc(\"${1:string}\")$2"
+		body: "asc(\$${1:string})$2"
 
 	"assert":
 		prefix: "assert"
@@ -111,11 +112,11 @@
 
 	"base64decode":
 		prefix: "base64decode"
-		body: "base64decode(\"${1:string}\", ${2:\[flag=0]})$3"
+		body: "base64decode(\$${1:string}, ${2:\[flag=0]})$3"
 
 	"base64encode":
 		prefix: "base64encode"
-		body: "base64encode(\"${1:string}\", ${2:\[flag=0]})$3"
+		body: "base64encode(\$${1:string}, ${2:\[flag=0]})$3"
 
 	"beep":
 		prefix: "beep"
@@ -160,7 +161,7 @@
 
 	"charview":
 		prefix: "charview"
-		body: "charview \"${1:string}\""
+		body: "charview \$${1:string}"
 
 	"chr":
 		prefix: "chr"
@@ -275,7 +276,7 @@
 
 	"escapeunicode":
 		prefix: "escapeunicode"
-		body: "escapeunicode \"${1:string}\""
+		body: "escapeunicode \$${1:string}"
 
 	"eval":
 		prefix: "eval"
@@ -381,7 +382,7 @@
 
 	"gettoken":
 		prefix: "gettoken"
-		body: "gettoken(\"${1:string}\", ${2:/*index=1*/}, ${3:/*separator=\" \"*/}, ${4:/*format*/})$5"
+		body: "gettoken(\$${1:string}, ${2:/*index=1*/}, ${3:/*separator=\" \"*/}, ${4:/*format*/})$5"
 
 	"gettokenindex":
 		prefix: "gettokenindex"
@@ -410,7 +411,7 @@
 
 	"hexdump":
 		prefix: "hexdump"
-		body: "hexdump(\"${1:string}\", ${2:/*unicode*/})$3"
+		body: "hexdump(\$${1:string}, ${2:/*unicode*/})$3"
 
 	"hextodec":
 		prefix: "hextodec"
@@ -468,7 +469,7 @@
 
 	"isunicode":
 		prefix: "isunicode"
-		body: "isunicode(\"${1:string}\", ${2:/*mindcodepage*/})$3"
+		body: "isunicode(\$${1:string}, ${2:/*mindcodepage*/})$3"
 
 
 	"listfolder":
@@ -613,15 +614,15 @@
 
 	"recase":
 		prefix: "recase"
-		body: "recase(\"${1:string}\", ${2:/*mode*/}, ${3:/*flags*/})$4"
+		body: "recase(\$${1:string}, ${2:/*mode*/}, ${3:/*flags*/})$4"
 
 	"regexmatches":
 		prefix: "regexmatches"
-		body: "regexmatches(\"${1:string}\", '${2:/*pattern*/}', \"${3:/*separator=|*/}\", ${4:/*matchcase=0*/})$5"
+		body: "regexmatches(\$${1:string}, '${2:/*pattern*/}', \"${3:/*separator=|*/}\", ${4:/*matchcase=0*/})$5"
 
 	"regexreplace":
 		prefix: "regexreplace"
-		body: "regexreplace(\"${1:string}\", '${2:/*pattern*/}', \"${3:/*replacement*/}\", ${4:/*matchcase=0*/})$5"
+		body: "regexreplace(\$${1:string}, '${2:/*pattern*/}', \"${3:/*replacement*/}\", ${4:/*matchcase=0*/})$5"
 
 	"releaseglobals":
 		prefix: "releaseglobals"
@@ -637,11 +638,11 @@
 
 	"replace":
 		prefix: "replace"
-		body: "replace(\"${1:string}\", ${2:\"search\"}, ${3:\"replacement\"}, ${4:/*matchcase*/}, ${5:/*start=1*/}, ${6:/*count=-1*/})$7"
+		body: "replace(\$${1:string}, ${2:\"search\"}, ${3:\"replacement\"}, ${4:/*matchcase*/}, ${5:/*start=1*/}, ${6:/*count=-1*/})$7"
 
 	"replacelist":
 		prefix: "replacelist"
-		body: "replacelist(\"${1:string}\", ${2:\"searchlist\"}, ${3:/*replacelist*/}, ${4:/*separator*/}, ${5:/*matchcase*/}, ${6:/*scope=0*/})$7"
+		body: "replacelist(\$${1:string}, ${2:\"searchlist\"}, ${3:/*replacelist*/}, ${4:/*separator*/}, ${5:/*matchcase*/}, ${6:/*scope=0*/})$7"
 
 	"report":
 		prefix: "report"
@@ -774,7 +775,7 @@
 
 	"strlen":
 		prefix: "strlen"
-		body: "strlen(\"${1:string}\")$2"
+		body: "strlen(\$${1:string})$2"
 
 	"strpos":
 		prefix: "strpos"
@@ -782,7 +783,7 @@
 
 	"strrepeat":
 		prefix: "strrepeat"
-		body: "strrepeat(\"${1:string}\", ${2:/*count=0*/})$3"
+		body: "strrepeat(\$${1:string}, ${2:/*count=0*/})$3"
 
 	"sub":
 		prefix: "sub"
@@ -790,7 +791,7 @@
 
 	"substr":
 		prefix: "substr"
-		body: "substr(\"${1:string}\", ${2:/*start*/}, ${3:/*length*/})$4"
+		body: "substr(\$${1:string}, ${2:/*start*/}, ${3:/*length*/})$4"
 
 	"swapnames":
 		prefix: "swapnames"
@@ -840,7 +841,7 @@
 
 	"trim":
 		prefix: "trim"
-		body: "trim(\"${1:string}\", ${2:/*charlist=\" \"*/}, ${3:/*mode=\"LR\"*/})$4"
+		body: "trim(\$${1:string}, ${2:/*charlist=\" \"*/}, ${3:/*mode=\"LR\"*/})$4"
 
 	"tweak":
 		prefix: "tweak"
@@ -861,11 +862,11 @@
 
 	"urldecode":
 		prefix: "urldecode"
-		body: "urldecode(\"${1:string}\", ${2:raw=0})$3"
+		body: "urldecode(\$${1:string}, ${2:raw=0})$3"
 
 	"urlencode":
 		prefix: "urlencode"
-		body: "urlencode(\"${1:string}\", ${2:raw=0})$3"
+		body: "urlencode(\$${1:string}, ${2:raw=0})$3"
 
 	"userbutton":
 		prefix: "userbutton"
@@ -873,11 +874,11 @@
 
 	"utf8decode":
 		prefix: "utf8decode"
-		body: "utf8decode(\"${1:string}\")$2"
+		body: "utf8decode(\$${1:string})$2"
 
 	"utf8encode":
 		prefix: "utf8encode"
-		body: "utf8encode(\"${1:string}\")$2"
+		body: "utf8encode(\$${1:string})$2"
 
 	"wait":
 		prefix: "wait"
