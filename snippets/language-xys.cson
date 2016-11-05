@@ -58,11 +58,27 @@
 
 	'Switch Statement':
 		prefix: 'switch'
-		body: 'switch (${1:/* expression */}) {\n\tcase ${2:/* value */}: $0\n}'
+		body: """
+		switch (${1:/* expression */}) {
+			case ${2:/* value */}:
+				${3:/* statement */}
+				break;
+			$0
+		}'
+		"""
 
 	'case':
 		prefix: 'case'
-		body: 'case ${1:/* value */}: $0'
+		body: """
+		case ${1:/* value */}:
+			${2:/* statement */}
+			break;
+		$0
+		"""
+
+	'default':
+		prefix: 'default'
+		body: 'default:\n\t${1:/* statement */}'
 
 	'Function':
 		prefix: 'function'
@@ -337,7 +353,7 @@
 
 	"format":
 		prefix: "format"
-		body: "format(${1:string}, \"${2:style}\")$3"
+		body: "format(\$${1:string}, \"${2:style}\")$3"
 
 	"formatbytes":
 		prefix: "formatbytes"
@@ -349,7 +365,7 @@
 
 	"formatlist":
 		prefix: "formatlist"
-		body: "formatlist(${1:list}, ${2:/*format*/}, ${3:/*separator=|*/}, ${4:/*param*/})$5"
+		body: "formatlist(\$${1:ListOfTokens}, ${2:/*format*/}, ${3:/*separator=|*/}, ${4:/*param*/})$5"
 
 	"fresh":
 		prefix: "fresh"

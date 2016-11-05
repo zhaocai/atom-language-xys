@@ -54,7 +54,7 @@
     'name': 'storage.type.xys'
   }
   {
-    'match': '(?i:\\b(foreach|break|continue|while|if|else|elseif|switch|case)\\b)'
+    'match': '(?i:\\b(foreach|break|continue|while|if|else|elseif|switch|case|default)\\b)'
     'name': 'keyword.control.xys'
   }
   {
