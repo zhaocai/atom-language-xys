@@ -795,7 +795,7 @@
 
 	"strpos":
 		prefix: "strpos"
-		body: "strpos(\"${1:haystack}\", ${2:\"needle\"}, ${3:/*start*/}, ${4:/*matchcase*/})$5"
+		body: "strpos(\$${1:haystack}, \"${2:needle}\", ${3:/*start*/}, ${4:/*matchcase*/})$5"
 
 	"strrepeat":
 		prefix: "strrepeat"
